@@ -48,7 +48,7 @@
 
 1. Run the main script:
    ```bash
-   python main.py
+python cyber_skull_utility.py
    ```
 
 2. Follow the on-screen instructions to select the desired utility.
