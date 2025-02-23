@@ -1,5 +1,6 @@
 import os
 import time
+import subprocess
 from colorama import Fore, Style, init
 
 # Initialize Colorama
@@ -39,27 +40,48 @@ $$$$$$$$$$$                 $$$$$$$$$$
                  uuu
 """
 
+def install_package(package):
+    """Installs the specified package using the system's package manager"""
+    print(f"{Fore.YELLOW}Installing {package}...{Fore.RESET}")
+    if os.name == 'nt':  # Windows
+        subprocess.run(["choco", "install", package, "-y"], check=True)
+    else:  # Linux/Mac
+        subprocess.run(["sudo", "apt-get", "install", package, "-y"], check=True)
+
 def scan_network():
     """Performs a network scan using Nmap"""
+    if not shutil.which("nmap"):
+        install_package("nmap")
     target = input("Enter target IP or range: ")
     os.system(f"nmap -sV {target}")
 
 def enumerate_shares():
     """Enumerates SMB shares"""
+    if not shutil.which("smbclient"):
+        install_package("smbclient")
     target = input("Enter target IP: ")
     os.system(f"smbclient -L \\\\{target} -N")
 
 def check_firewall():
     """Checks firewall rules"""
-    os.system("netsh advfirewall show allprofiles state" if os.name == "nt" else "sudo ufw status verbose")
+    if os.name == 'nt':
+        os.system("netsh advfirewall show allprofiles state")
+    else:
+        if not shutil.which("ufw"):
+            install_package("ufw")
+        os.system("sudo ufw status verbose")
 
 def sniff_traffic():
     """Captures network traffic using tcpdump"""
+    if not shutil.which("tcpdump"):
+        install_package("tcpdump")
     print("Capturing network traffic...")
     os.system("sudo tcpdump -i any -c 50")
 
 def exploit_ssh():
     """Attempts a brute-force attack on SSH (for authorized testing only)"""
+    if not shutil.which("hydra"):
+        install_package("hydra")
     target = input("Enter SSH target (IP or domain): ")
     user = input("Enter username: ")
     wordlist = input("Enter path to password wordlist: ")
