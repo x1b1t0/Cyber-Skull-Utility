@@ -7,18 +7,36 @@ init(autoreset=True)
 
 # ASCII Skull
 skull = f"""{Fore.RED}
-       __
-    .-'      '-.
-   /            \
-  |              |
-  |,  .-.  .-.  ,|
-  | )(o/  \o)( |
-  |/     /\     \|
-  (_     ^^     _)
-   \_|IIIIII|_/
-    | \IIIIII/ |
-    \          /
-     --------
+               uuuuuuu
+           uu$$$$$$$$$$$uu
+        uu$$$$$$$$$$$$$$$$$uu
+       u$$$$$$$$$$$$$$$$$$$$$u
+      u$$$$$$$$$$$$$$$$$$$$$$$u
+     u$$$$$$$$$$$$$$$$$$$$$$$$$u
+     u$$$$$$$$$$$$$$$$$$$$$$$$$u
+     u$$$$$$"   "$$$"   "$$$$$$u
+     "$$$$"      u$u       $$$$"
+      $$$u       u$u       u$$$
+      $$$u      u$$$u      u$$$
+       "$$$$uu$$$   $$$uu$$$$"
+        "$$$$$$$"   "$$$$$$$"
+          u$$$$$$$u$$$$$$$u
+           u$"$"$"$"$"$"$u
+uu        $$u$ $ $ $ $ $u$$       uu
+u$$$uu     "$$$u$u$u$u$$$"     uu$$$u
+$$$$$$$$$$$uu ""$$$$$$$$$$uuuu$$$$$$$$$$
+u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$u
+u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$u
+        uuuu$$$$$$$$$$$$$$$$$$$$uuuu
+u$$$uuu$$$$$$$$$uu   $$$$   uuuu$$$$$$$$$uuu$$$
+$$$$$$$$$$$                 $$$$$$$$$$
+      $$$$   $$$$$$$$$$$$$$   $$$$
+       "$$$$   $$$$$$$$$$$   $$$$"
+         "$$$$uu   """   uu$$$$"
+           "$$$$$$uuu$$$$$$"
+              "$$$$$$$$$"
+               "$$$$$"
+                 uuu
 """
 
 def scan_network():
@@ -29,7 +47,7 @@ def scan_network():
 def enumerate_shares():
     """Enumerates SMB shares"""
     target = input("Enter target IP: ")
-    os.system(f"smbclient -L \\{target} -N")
+    os.system(f"smbclient -L \\\\{target} -N")
 
 def check_firewall():
     """Checks firewall rules"""
